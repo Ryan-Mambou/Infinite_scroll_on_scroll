@@ -20,7 +20,7 @@ async function getPokemons({pageParam} : {pageParam : number}) {
   }
   const data = await res.json()
   let filtered = await data.results.map((pokemon : {
-    
+
   }, index : number) => {
     let paddedIndex = pageParam === 0 ? ('00' + (index + 1)).slice(-3) : ('00' + (index + 1 + pageParam)).slice(-3)
     
@@ -31,17 +31,6 @@ async function getPokemons({pageParam} : {pageParam : number}) {
     }
   }) 
   return filtered
-}
-
-
-let getPoks = async () => {
-  const res = await fetch(`https://pokeapi.co/api/v2/ability?limit=20&offset=0`)
-if (!res.ok) {
-  // This will activate the closest `error.js` Error Boundary
-  throw new Error('Failed to fetch data')
-}
-return await res.json()
-
 }
 
 export default function Home() {
@@ -66,7 +55,6 @@ export default function Home() {
   })
 
   useEffect(() => {
-    console.log(inView, hasNextPage)
     if (inView && hasNextPage) {
       fetchNextPage();
     }
